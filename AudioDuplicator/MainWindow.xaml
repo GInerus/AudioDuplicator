@@ -1,0 +1,92 @@
+﻿<Window x:Class="AudioDuplicator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Audio Duplicator" Height="500" Width="600"
+        Background="#1E1E1E" Foreground="White">
+
+    <Window.Resources>
+        <!-- Стиль кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#3C3C3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#555"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- Стиль ComboBox -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!-- Стиль Label -->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Источник -->
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Источник:" Grid.Column="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="SourceComboBox" Grid.Column="1" SelectionChanged="SourceComboBox_SelectionChanged"/>
+        </Grid>
+
+        <!-- Приёмники -->
+        <StackPanel Grid.Row="1">
+            <Button Content="Добавить устройство" 
+                    Height="30" 
+                    Margin="0,0,0,5"
+                    Click="AddTargetButton_Click"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="TargetsPanel" Orientation="Vertical"/>
+            </ScrollViewer>
+        </StackPanel>
+
+
+        <!-- Старт / Стоп -->
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Кнопки -->
+                <RowDefinition Height="Auto"/>
+                <!-- Подпись -->
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="StartButton" Content="Старт" Height="40" Margin="5" Grid.Column="0" Click="StartButton_Click"/>
+                <Button x:Name="StopButton" Content="Стоп" Height="40" Margin="5" Grid.Column="1" Click="StopButton_Click" IsEnabled="False"/>
+            </Grid>
+
+            <!-- Подпись автора -->
+            <TextBlock Grid.Row="1" Text="Автор: Gera (Герман) - 2025" 
+               HorizontalAlignment="Center" 
+               Foreground="LightGray"
+               FontSize="12"
+               Margin="0,0,0,0"/>
+        </Grid>
+
+    </Grid>
+</Window>
